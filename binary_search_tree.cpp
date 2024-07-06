@@ -18,6 +18,7 @@ void levelOrder(Node*);
 bool searchNode(Node*, int);
 int min(Node*);
 int max(Node*);
+int height(Node*);
 
 int main() {
 
@@ -37,6 +38,8 @@ int main() {
     levelOrder(root);
 
     cout << "Max: " << max(root) << ", Min: " << min(root) << "\n";
+
+    cout << "Height of the tree: " << height(root) << "\n";
 
     return 0;
 }
@@ -118,4 +121,11 @@ void levelOrder(Node *root) {
         Q.pop();
     }
     cout << "\n"; 
+}
+
+int height(Node *root) {
+    if (root == nullptr) return -1;
+
+    int max_height = (height(root -> left) > height(root -> right)) ? height(root -> left) : height(root -> right);
+    return max_height + 1;
 }
